@@ -12,9 +12,8 @@ pub struct Command;
 impl Command {
     pub fn new<S: AsRef<OsStr>>(program: S) -> std::process::Command {
         let mut inner = std::process::Command::new(program);
-        if cfg!(windows) {
-            inner.creation_flags(CREATE_NO_WINDOW);
-        }
+        #[cfg(windows)]
+        inner.creation_flags(CREATE_NO_WINDOW);
 
         inner
     }
