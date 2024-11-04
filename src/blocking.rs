@@ -13,14 +13,12 @@ impl Command {
     #[allow(clippy::new_ret_no_self)]
     pub fn new<S: AsRef<OsStr>>(program: S) -> std::process::Command {
         #[cfg(windows)]
-        let inner = {
+        {
             let mut inner = std::process::Command::new(program);
             inner.creation_flags(CREATE_NO_WINDOW);
             inner
-        };
+        }
         #[cfg(not(windows))]
-        let inner = std::process::Command::new(program);
-
-        inner
+        std::process::Command::new(program)
     }
 }
