@@ -1,6 +1,6 @@
 [package]
 name = "one-command"
-version = "0.2.3"
+version = "0.3.0"
 edition = "2021"
 license = "Apache-2.0"
 description = "Execute commands on the Windows platform, without opening a window to maintain consistency with other system behaviors."
@@ -8,4 +8,8 @@ repository = "https://github.com/thlstsul/one-command"
 keywords = ["CREATE_NO_WINDOW", "command", "async-process"]
 
 [dependencies]
-async-process = ">0"
+async-process = { version = ">0", optional = true }
+
+[features]
+async = ["async-process"]
+default = ["async"]
